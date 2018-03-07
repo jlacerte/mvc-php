@@ -58,4 +58,22 @@ encapsulating the application logic. This is the layer that should implement all
 
 In our example the model is represented by 2 classes: the “Model” class and a “Book” class. The model doesn’t need any other presentation. The “Book” class is an entity class. This class should be exposed to the View layer and represents the format exported by the Model view. In a good implementation of the MVC pattern only entity classes should be exposed by the model and they should not encapsulate any business logic. Their solely purpose is to keep data. Depending on implementation Entity objects can be replaced by xml or json chunk of data. In the above snippet you can notice how Model is returning a specific book, or a list of all available books:
 
+In our example the model layer includes the Book class. In a real scenario, the model will include all the entities and the classes to persist data into the database, and the classes encapsulating the business logic.
 
+View (Presentation)
+
+The view(presentation layer)is responsible for formating the data received from the model in a form accessible to the user. The data can come in different formats from the model: simple objects( sometimes called Value Objects), xml structures, json, …
+
+The view should not be confused to the template mechanism sometimes they work in the same manner and address similar issues. Both will reduce the dependency of the presentation layer of from rest of the system and separates the presentation elements(html) from the code. The controller delegates the data from the model to a specific view element, usually associated to the main entity in the model. For example the operation “display account” will be associated to a “display account” view. The view layer can use a template system to render the html pages. The template mechanism can reuse specific parts of the page: header, menus, footer, lists and tables, …. Speaking in the context of the MVC pattern
+
+In our example the view contains only 2 files one for displaying one book and the other one for displaying a list of books.
+
+The above example is a simplified implementation in PHP. Most of the PHP web frameworks based on MVC have similar implementations, in a much better shape. However, the possibility of MVC pattern are endless. For example different layers can be implemented in different languages or distributed on different machines. AJAX applications can implements the View layer directly in Javascript in the browser, invoking JSON services. The controller can be partially implemented on client, partially on server…
+
+This post should not be ended before enumerating the advantages of Model View Controller pattern:
+
+the Model and View are separated, making the application more flexible.
+the Model and view can be changed separately, or replaced. For example a web application can be transformed in a smart client application just by writing a new View module, or an application can use web services in the backend instead of a database, just replacing the model module.
+each module can be tested and debugged separately.
+
+The files are available for download as a zip from http://sourceforge.net/projects/mvc-php/files/mvc.zip/download
